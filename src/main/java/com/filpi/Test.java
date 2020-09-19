@@ -8,5 +8,6 @@ public class Test {
         System.out.println(GoogleFilmPage.FilmGenre("третий лишний"));
         System.out.println(GoogleFilmPage.FilmPoster("миллион способов потерять голову"));
         System.out.println(GoogleFilmPage.FilmName("Джанго освобождённый"));
+        System.out.println(GoogleFilmPage.FilmPlot("12 лет рабства"));
     }
 }

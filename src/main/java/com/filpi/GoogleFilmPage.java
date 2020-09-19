@@ -61,4 +61,12 @@ public class GoogleFilmPage {
 
         return GlobalVar.FILM_NAME_IN_GOOGLE_PAGE;
     }
+    public static String FilmPlot(String film_name) throws IOException {
+        URL url = new URL("https://www.google.com/search?newwindow=1&hl=ru&source=hp&ei=dOc_X4DiDc3zgAbbz4WQCA&q=" + film_name + "&oq="  + film_name + "&gs_lcp=CgZwc3ktYWIQAzIFCC4QkwIyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCABKBQgEEgExSgUIBxIBMUoFCAgSATFQg8YIWIPGCGDwzwhoAHAAeACAAR2IAR2SAQExmAEAoAECoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwiA7NTLzazrAhXNOcAKHdtnAYIQ4dUDCAc&uact=5");
+
+        Document doc = Jsoup.connect(String.valueOf(url)).get();
+        GlobalVar.FILM_PLOT_IN_GOOGLE_PAGE = doc.select(".kno-rdesc span").text();
+
+        return GlobalVar.FILM_PLOT_IN_GOOGLE_PAGE;
+    }
 }
