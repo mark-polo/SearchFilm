@@ -7,6 +7,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -68,5 +69,17 @@ public class GoogleFilmPage {
         GlobalVar.FILM_PLOT_IN_GOOGLE_PAGE = doc.select(".kno-rdesc span").text();
 
         return GlobalVar.FILM_PLOT_IN_GOOGLE_PAGE;
+    }
+    public static ArrayList<String> FilmActorsAndSameFilms(String film_name) throws IOException {
+        ArrayList<String> arr_ga = new ArrayList<>();
+        URL url = new URL("https://www.google.com/search?newwindow=1&hl=ru&source=hp&ei=dOc_X4DiDc3zgAbbz4WQCA&q=" + film_name + "&oq="  + film_name + "&gs_lcp=CgZwc3ktYWIQAzIFCC4QkwIyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCABKBQgEEgExSgUIBxIBMUoFCAgSATFQg8YIWIPGCGDwzwhoAHAAeACAAR2IAR2SAQExmAEAoAECoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwiA7NTLzazrAhXNOcAKHdtnAYIQ4dUDCAc&uact=5");
+
+        Document doc = Jsoup.connect(String.valueOf(url)).get();
+        Elements el_ga = doc.select(".zVvuGd.MRfBrb a");
+        for(Element el : el_ga) {
+            arr_ga.add(el.attr("title"));
+        }
+
+        return arr_ga;
     }
 }
