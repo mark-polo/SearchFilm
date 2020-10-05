@@ -21,6 +21,6 @@ public class Test {
 
         System.out.println(GoogleFilmPage.FilmRatings("тупой и еще тупее 2"));
 
-        System.out.println(RandomFilmWithInforFromIMDBUseOMDbAPI.film(model , "c19eae94" , 0 , 100 , 2 , 3));
+        System.out.println(RandomFilmWithInforFromIMDBUseOMDbAPI.film(model , "your omdb api-key" , 0 , 100 , 2 , 3));
     }
 }
