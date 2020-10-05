@@ -6,12 +6,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class RandomFilmWithInforFromIMDBUseOMDbAPI {
 
-    public static String film(IMDBModel model , String api , int minIndexOfRandom , int maxIndexOfRandom , int countOfPages) throws IOException {
+    public static String film(IMDBModel model , String api , int minIndexOfRandom , int maxIndexOfRandom , int countOfPages , int index) throws IOException {
+
+        ArrayList<String> pack = new ArrayList<>();
 
         URL url = new URL("http://www.omdbapi.com/?i=" + RandomIMDBFilm.parser(randomIMDBId(minIndexOfRandom , maxIndexOfRandom) , countOfPages) + "&apikey=" + api);
 
@@ -37,22 +40,23 @@ public class RandomFilmWithInforFromIMDBUseOMDbAPI {
             model.setRunTime(object.getString("Runtime"));
             model.setPlot(object.getString("Plot"));
 
-            return "Title : " + model.getTitle() + "\n" +
-                    "Country : " + model.getCountry() + "\n" +
-                    "Year : " + model.getYear() + "\n" +
-                    "Genre : " + model.getGenre() + "\n" +
-                    "Director : " + model.getDirector() + "\n" +
-                    "RunTime : " + model.getRunTime() + "\n" +
-                    "Plot : " + model.getPlot() + "\n" +
-                    "Rated : " + model.getRated() + "\n" +
-                    "IMDB Rating : " + model.getImdbRating() + "\n" +
-                    "IMDB Votes : " + model.getImdbVotes() + "\n" +
-                    "IMDB ID : " + model.getImdbID() + "\n" +
-                    model.getPoster();
+            pack.add(model.getTitle());
+            pack.add(model.getImdbRating());
+            pack.add(model.getRated());
+            pack.add(model.getImdbID());
+            pack.add(model.getYear());
+            pack.add(model.getImdbVotes());
+            pack.add(model.getCountry());
+            pack.add(model.getPoster());
+            pack.add(model.getGenre());
+            pack.add(model.getDirector());
+            pack.add(model.getRunTime());
+            pack.add(model.getPlot());
+
+            return pack.get(index);
 
         } catch (JSONException e) {
-            return "Error 404... not found film or tv show... " + "\n" +
-                    "IMDB ID : " + model.getImdbID();
+           return "Error...";
         }
     }
 
@@ -60,4 +64,5 @@ public class RandomFilmWithInforFromIMDBUseOMDbAPI {
         Random rand = new Random();
         return rand.nextInt((max-min)+1)+min;
     }
+
 }
