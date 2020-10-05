@@ -1,5 +1,6 @@
 package com.filpi;
 
+import com.filpi.ProjectGlobalVariables.GlobalVar;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -81,5 +82,20 @@ public class GoogleFilmPage {
         }
 
         return arr_ga;
+    }
+
+    public static String FilmRatings (String film_name) throws IOException {
+
+        URL url = new URL("https://www.google.com/search?newwindow=1&hl=ru&source=hp&ei=dOc_X4DiDc3zgAbbz4WQCA&q=" + film_name + "&oq="  + film_name + "&gs_lcp=CgZwc3ktYWIQAzIFCC4QkwIyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCABKBQgEEgExSgUIBxIBMUoFCAgSATFQg8YIWIPGCGDwzwhoAHAAeACAAR2IAR2SAQExmAEAoAECoAEBqgEHZ3dzLXdpeg&sclient=psy-ab&ved=0ahUKEwiA7NTLzazrAhXNOcAKHdtnAYIQ4dUDCAc&uact=5");
+
+        Document doc = Jsoup.connect(String.valueOf(url)).get();
+        String rat = doc.select(".yQ8hqd.ksSzJd.w6Utff span").text();
+
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(rat);
+        if(matcher.find()) GlobalVar.FILM_RATINGS_IN_GOOGLE_PAGE = matcher.group(); /// only rating
+
+        return GlobalVar.FILM_RATINGS_IN_GOOGLE_PAGE + " / " + "10";
+
     }
 }
