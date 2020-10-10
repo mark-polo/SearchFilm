@@ -1,6 +1,5 @@
 package com.filpi;
 
-import com.filpi.IMDbFilm.GetFilm;
 import com.filpi.IMDbFilm.IMDbFilmUseOMDbAPI;
 import com.filpi.RandomIMDBFilm.IMDBModel;
 import com.filpi.RandomIMDBFilm.RandomFilmWithInforFromIMDBUseOMDbAPI;
@@ -24,13 +23,13 @@ public class Test {
 
         System.out.println(GoogleFilmPage.FilmRatings("тупой и еще тупее 2"));
 
-        System.out.println(RandomFilmWithInforFromIMDBUseOMDbAPI.film(model , "your omdb api key" , 0 , 100 , 2 , 2));
+        System.out.println(RandomFilmWithInforFromIMDBUseOMDbAPI.film(model , "your api key" , 0 , 100 , 2 , 3));
 
-        System.out.println(IMDbFilmUseOMDbAPI.IMDbFilm(model , "your omdb api key" , "12 лет рабства" , 3));
+        System.out.println(IMDbFilmUseOMDbAPI.IMDbFilm(model , "your api key" , "Заклятие" , 4));
 
         ArrayList<String> key = new ArrayList<>();
-        key.add("комедии");
+        key.add("ужасы");
 
-        System.out.println(Recommendation.filmRec("Полтора шпиона" , key));
+        System.out.println(Recommendation.filmRec("Проклятие", key));
     }
 }
