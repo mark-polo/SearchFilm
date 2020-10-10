@@ -1,5 +1,6 @@
-package com.filpi.RandomIMDBFilm;
+package com.filpi.IMDbFilm;
 
+import com.filpi.RandomIMDBFilm.IMDBModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,16 +8,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
-public class RandomFilmWithInforFromIMDBUseOMDbAPI {
+public class IMDbFilmUseOMDbAPI {
 
-    public static String film(IMDBModel model , String api , int minIndexOfRandom , int maxIndexOfRandom , int countOfPages , int index) throws IOException {
+    public static String IMDbFilm(IMDBModel model , String api , String film_name , int index) throws IOException {
 
         ArrayList<String> pack = new ArrayList<>();
 
-        URL url = new URL("http://www.omdbapi.com/?i=" + RandomIMDBFilm.parser(randomIMDBId(minIndexOfRandom , maxIndexOfRandom) , countOfPages) + "&apikey=" + api);;
+        URL url = new URL("http://www.omdbapi.com/?i=" + GetFilm.getFilm(film_name) + "&apikey=" + api);;
 
         Scanner in = new Scanner((InputStream) url.getContent());
 
@@ -56,13 +56,8 @@ public class RandomFilmWithInforFromIMDBUseOMDbAPI {
             return pack.get(index);
 
         } catch (JSONException e) {
-           return "Error...";
+            return "Error...";
         }
-    }
-
-    public static int randomIMDBId(int min , int max) {
-        Random rand = new Random();
-        return rand.nextInt((max-min)+1)+min;
     }
 
 }

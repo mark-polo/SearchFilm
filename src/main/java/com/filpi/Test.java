@@ -1,7 +1,10 @@
 package com.filpi;
 
+import com.filpi.IMDbFilm.GetFilm;
+import com.filpi.IMDbFilm.IMDbFilmUseOMDbAPI;
 import com.filpi.RandomIMDBFilm.IMDBModel;
 import com.filpi.RandomIMDBFilm.RandomFilmWithInforFromIMDBUseOMDbAPI;
+import com.filpi.Recommendation.Recommendation;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,6 +24,13 @@ public class Test {
 
         System.out.println(GoogleFilmPage.FilmRatings("тупой и еще тупее 2"));
 
-        System.out.println(RandomFilmWithInforFromIMDBUseOMDbAPI.film(model , "c19eae94" , 0 , 100 , 2 , 3));
+        System.out.println(RandomFilmWithInforFromIMDBUseOMDbAPI.film(model , "your omdb api key" , 0 , 100 , 2 , 2));
+
+        System.out.println(IMDbFilmUseOMDbAPI.IMDbFilm(model , "your omdb api key" , "12 лет рабства" , 3));
+
+        ArrayList<String> key = new ArrayList<>();
+        key.add("комедии");
+
+        System.out.println(Recommendation.filmRec("Полтора шпиона" , key));
     }
 }
