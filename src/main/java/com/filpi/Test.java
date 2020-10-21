@@ -31,5 +31,6 @@ public class Test {
         key.add("ужасы");
 
         System.out.println(Recommendation.filmRec("Проклятие", key));
+
     }
 }
